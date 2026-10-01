@@ -12,7 +12,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Deepthroat">
+<meta name="apple-mobile-web-app-title" content="Rutina">
 <style>
   :root[data-palette="kinky"]{
     --bg:#0A0608;
@@ -1391,7 +1391,7 @@
       impose_order_note:"🔒 Esta orden bloquea tus ajustes hasta que termine.",
       impose_sent_note:"🔒 Impone ajustes mientras dure.",
       discreet_card_title:"Modo discreto",
-      discreet_desc:"Cambia el título, el nombre de la pestaña del navegador y el ícono por algo neutro («Rutina»), para que no se note de qué es la app si alguien ve tu pantalla o tu historial.",
+      discreet_desc:"Cambia el título y el nombre de la pestaña del navegador por «Rutina», y el ícono cuando la usas en el navegador. Si la agregaste a la pantalla de inicio, el ícono y el nombre de ahí los fija el celular al instalarla.",
       discreet_title:"Rutina",
       discreet_on:"Desactivar modo discreto", discreet_off:"Activar modo discreto",
       discreet_toast_on:"Modo discreto activado: la app ahora se llama «Rutina».",
@@ -1865,7 +1865,7 @@
       impose_order_note:"🔒 This order locks your settings until it ends.",
       impose_sent_note:"🔒 Imposes settings while it lasts.",
       discreet_card_title:"Discreet mode",
-      discreet_desc:"Changes the title, the browser tab name and the icon to something neutral (\"Routine\"), so it's not obvious what the app is if someone sees your screen or history.",
+      discreet_desc:"Changes the title and the browser tab name to \"Routine\", and the icon when you use it in the browser. If you added it to your home screen, the icon and name there are set by your phone when you install it.",
       discreet_title:"Routine",
       discreet_on:"Turn off discreet mode", discreet_off:"Turn on discreet mode",
       discreet_toast_on:"Discreet mode on: the app is now called \"Routine\".",
@@ -5716,7 +5716,7 @@
     document.title = title;
     document.getElementById("appTitle").textContent = title;
     var am = document.querySelector('meta[name="apple-mobile-web-app-title"]');
-    if(am) am.setAttribute("content", discreetMode ? t("discreet_title") : "Deepthroat");
+    if(am) am.setAttribute("content", "Rutina");
     originalIcons.forEach(function(o){ o.el.setAttribute("href", discreetMode ? DISCREET_ICON : o.href); });
     discreetBtn.textContent = discreetMode ? t("discreet_on") : t("discreet_off");
     discreetBtn.classList.toggle("on", discreetMode);

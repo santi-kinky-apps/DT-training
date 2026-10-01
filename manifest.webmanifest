@@ -1,7 +1,7 @@
 {
-  "name": "Deepthroat Training",
-  "short_name": "Deepthroat",
-  "description": "Entrenamiento y medidor de velocidad, con niveles, logros y seguimiento de progreso.",
+  "name": "Rutina",
+  "short_name": "Rutina",
+  "description": "Rutina de entrenamiento diaria.",
   "id": "./",
   "start_url": "./",
   "scope": "./",
