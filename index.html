@@ -736,12 +736,6 @@
       </div>
 
       <div class="level-card">
-        <div class="level-name" data-i18n="discreet_card_title">Modo discreto</div>
-        <div class="level-sub" data-i18n="discreet_desc">Cambia el título, el nombre de la pestaña del navegador y el ícono por algo neutro («Rutina»), para que no se note de qué es la app si alguien ve tu pantalla o tu historial.</div>
-        <button class="reset-btn" id="discreetBtn" style="margin-top:10px; width:100%;">Activar modo discreto</button>
-      </div>
-
-      <div class="level-card">
         <div class="level-name" id="safeModeTitle" data-i18n="safe_mode_title">Modo seguro</div>
         <button class="reset-btn" id="safeModeBtn" style="width:100%;">Activar modo seguro</button>
         <div class="safe-mode-note" id="safeModeNote" data-i18n="safe_mode_desc">Limita el tiempo máximo de cualquier repetición a 20 s (Hardcore y Maestro incluidos). No afecta las repeticiones.</div>
@@ -1333,7 +1327,7 @@
         {h:"Ajustes avanzados"},
         {p:"**Modo seguro**: ninguna repetición ni aguante pasa de **20 s**, ni en **Hardcore** ni en Maestro; la cantidad de repeticiones se mantiene. Viene apagado por defecto."},
         {link:"🛡️ Ir a activar el Modo seguro", to:"safeMode"},
-        {p:"**Ritmo real** (viene encendido): tienes que esperar un día de calendario para pasar al día siguiente. **Colores**: elige la paleta. **Modo discreto**: cambia el nombre y el ícono por «Rutina». **Borrar todo**: elimina progreso, racha y logros sin vuelta atrás."},
+        {p:"**Ritmo real** (viene encendido): tienes que esperar un día de calendario para pasar al día siguiente. **Colores**: elige la paleta. **Borrar todo**: elimina progreso, racha y logros sin vuelta atrás."},
         {p:"Mientras entrenas, la app pide que la pantalla no se apague (si el navegador lo permite)."},
         {h:"Tareas"},
         {p:"En la pestaña **Tareas**, quien manda crea una **orden**: pone su nombre, agrega tareas (sesiones con valores fijos, días del programa, aguantar X segundos, rachas, tareas libres…), y si quiere una fecha límite, un **premio** y un **castigo**. La app le da un código y un identificador único, por ejemplo **#K7Q-4ZP**."},
@@ -1390,12 +1384,6 @@
       impose_locked_toast:function(id){ return "🔒 Bloqueado por la orden #"+id+" hasta que termine."; },
       impose_order_note:"🔒 Esta orden bloquea tus ajustes hasta que termine.",
       impose_sent_note:"🔒 Impone ajustes mientras dure.",
-      discreet_card_title:"Modo discreto",
-      discreet_desc:"Cambia el título y el nombre de la pestaña del navegador por «Rutina», y el ícono cuando la usas en el navegador. Si la agregaste a la pantalla de inicio, el ícono y el nombre de ahí los fija el celular al instalarla.",
-      discreet_title:"Rutina",
-      discreet_on:"Desactivar modo discreto", discreet_off:"Activar modo discreto",
-      discreet_toast_on:"Modo discreto activado: la app ahora se llama «Rutina».",
-      discreet_toast_off:"Modo discreto desactivado.",
       task_repeat_label:"Repetir cada día durante (días, opcional)",
       task_surprise_label:"🎁 Sorpresa: oculta hasta cumplir las anteriores",
       task_penalty_btn:"⛓️ Usar como castigo automático",
@@ -1807,7 +1795,7 @@
         {h:"Advanced settings"},
         {p:"**Safe mode**: no rep or hold goes past **20 s**, not even in **Hardcore** or Master; the number of reps stays the same. It's off by default."},
         {link:"🛡️ Go turn on Safe mode", to:"safeMode"},
-        {p:"**Real pace** (on by default): you have to wait a calendar day to move to the next day. **Colors**: pick the palette. **Discreet mode**: changes the name and icon to “Routine”. **Delete everything**: wipes progress, streak and achievements for good."},
+        {p:"**Real pace** (on by default): you have to wait a calendar day to move to the next day. **Colors**: pick the palette. **Delete everything**: wipes progress, streak and achievements for good."},
         {p:"While you train, the app asks for the screen to stay on (if the browser allows it)."},
         {h:"Tasks"},
         {p:"In the **Tasks** tab, whoever's in charge creates an **order**: they write their name, add tasks (sessions with set values, program days, hold X seconds, streaks, free tasks…), and optionally a deadline, a **reward** and a **punishment**. The app gives them a code and a unique ID, like **#K7Q-4ZP**."},
@@ -1864,12 +1852,6 @@
       impose_locked_toast:function(id){ return "🔒 Locked by order #"+id+" until it ends."; },
       impose_order_note:"🔒 This order locks your settings until it ends.",
       impose_sent_note:"🔒 Imposes settings while it lasts.",
-      discreet_card_title:"Discreet mode",
-      discreet_desc:"Changes the title and the browser tab name to \"Routine\", and the icon when you use it in the browser. If you added it to your home screen, the icon and name there are set by your phone when you install it.",
-      discreet_title:"Routine",
-      discreet_on:"Turn off discreet mode", discreet_off:"Turn on discreet mode",
-      discreet_toast_on:"Discreet mode on: the app is now called \"Routine\".",
-      discreet_toast_off:"Discreet mode off.",
       task_repeat_label:"Repeat every day for (days, optional)",
       task_surprise_label:"🎁 Surprise: hidden until the previous ones are done",
       task_penalty_btn:"⛓️ Use as automatic punishment",
@@ -5579,7 +5561,7 @@
       var key = el.getAttribute("data-i18n-label");
       if(typeof STRINGS[lang][key] === "string"){ el.setAttribute("aria-label", STRINGS[lang][key]); el.setAttribute("title", STRINGS[lang][key]); }
     });
-    applyDiscreet();
+    document.getElementById("appTitle").textContent = t("app_title");
     document.getElementById("langBtn").textContent = lang.toUpperCase();
     document.getElementById("planLegend").textContent = t("plan_legend");
     document.getElementById("editorTitle").textContent = t("editor_title");
@@ -5702,30 +5684,6 @@
     theme = (theme === "light") ? "dark" : "light";
     saveTheme(theme);
     applyTheme();
-  });
-
-  /* ---------------- Modo discreto ----------------
-     Título, pestaña del navegador e ícono neutros, para que no se note de qué es la app. */
-  var DISCREET_KEY = "gpt_discreet_v1";
-  var discreetMode = (function(){ try{ return localStorage.getItem(DISCREET_KEY) === "1"; }catch(e){ return false; } })();
-  var DISCREET_ICON = "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#5B6478"/><path d="M18 33l9 9 19-20" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>');
-  var originalIcons = Array.prototype.map.call(document.querySelectorAll('link[rel~="icon"], link[rel="apple-touch-icon"]'), function(l){ return {el:l, href:l.getAttribute("href")}; });
-  var discreetBtn = document.getElementById("discreetBtn");
-  function applyDiscreet(){
-    var title = discreetMode ? t("discreet_title") : t("app_title");
-    document.title = title;
-    document.getElementById("appTitle").textContent = title;
-    var am = document.querySelector('meta[name="apple-mobile-web-app-title"]');
-    if(am) am.setAttribute("content", "Rutina");
-    originalIcons.forEach(function(o){ o.el.setAttribute("href", discreetMode ? DISCREET_ICON : o.href); });
-    discreetBtn.textContent = discreetMode ? t("discreet_on") : t("discreet_off");
-    discreetBtn.classList.toggle("on", discreetMode);
-  }
-  discreetBtn.addEventListener("click", function(){
-    discreetMode = !discreetMode;
-    try{ localStorage.setItem(DISCREET_KEY, discreetMode ? "1" : "0"); }catch(e){}
-    applyDiscreet();
-    showToast(discreetMode ? t("discreet_toast_on") : t("discreet_toast_off"));
   });
 
   var BTN_POS_KEY = "gpt_btn_pos_v1";
