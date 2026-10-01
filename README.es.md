@@ -2,7 +2,7 @@
   <img src="icons/icon-192.png" width="96" alt="">
 </p>
 
-<h1 align="center">Rutina</h1>
+<h1 align="center">DT-training</h1>
 
 <p align="center">
   Una app de entrenamiento gratuita y privada para adultos que practican deepthroat.<br>
@@ -20,7 +20,7 @@
 
 ## Qué es
 
-Rutina es un temporizador de entrenamiento que se usa con las manos libres: apoyas el celular sobre el juguete y tocas el botón grande con la nariz. Te guía por un programa de 4 niveles y 28 días, lleva tu progreso y tu racha, y permite que otra persona te mande tareas.
+DT-training es un temporizador de entrenamiento que se usa con las manos libres: apoyas el celular sobre el juguete y tocas el botón grande con la nariz. Te guía por un programa de 4 niveles y 28 días, lleva tu progreso y tu racha, y permite que otra persona te mande tareas.
 
 <p align="center">
   <img src="screenshots/es-1-keep-it-in.png" width="200" alt="Pantalla Mantener">

@@ -2,7 +2,7 @@
   <img src="icons/icon-192.png" width="96" alt="">
 </p>
 
-<h1 align="center">Rutina</h1>
+<h1 align="center">DT-training</h1>
 
 <p align="center">
   A free, private training app for adults who practice deepthroat.<br>
@@ -20,7 +20,7 @@
 
 ## What it is
 
-Rutina is a training timer you use hands-free: you rest your phone on the toy and tap the big button with your nose. It guides you through a 4-level, 28-day program, tracks your progress and streak, and lets a partner send you tasks.
+DT-training is a training timer you use hands-free: you rest your phone on the toy and tap the big button with your nose. It guides you through a 4-level, 28-day program, tracks your progress and streak, and lets a partner send you tasks.
 
 <p align="center">
   <img src="screenshots/en-1-keep-it-in.png" width="200" alt="Keep it in screen">
