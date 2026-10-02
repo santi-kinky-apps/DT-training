@@ -1,5 +1,23 @@
 # Changelog
 
+## v1.2.0
+
+- **Faster double taps:** a double tap now asks for both taps in a beat and a half, instead of two full beats.
+- **Countdown beeps:** in the last 3 seconds of every hold (Keep it in and Rhythm), beeps that get higher and higher let you know you're almost there without looking at the screen.
+- **Time editor:**
+  - It now also lets you change the Rhythm pace (seconds between beats) for every day of every level.
+  - Changing only the Rhythm pace doesn't reset your progress.
+  - Orders that impose your editor times include the Rhythm pace too.
+
+## v1.1.0
+
+- **Rhythm is easier and more realistic.** Each beat now gives you time to pull the toy all the way out and take it back in.
+  - The beat interval starts at 5 s on Rookie mouth and slowly goes down across the 28 days, never below 3 s.
+  - You can tap at any point before the next beat.
+  - Double taps last two beats.
+  - After every hold there's a 5-second rest, with a countdown, before the next beat.
+- Custom Rhythm intervals are now 3, 4, 5 or 6 s.
+
 ## v1.0.0
 
 First public release.

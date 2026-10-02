@@ -1,6 +1,6 @@
 // Guarda la app en el celular para que funcione sin internet.
 // Al publicar una versión nueva, cambia el número de VERSION para renovar la copia guardada.
-var VERSION = "v3";
+var VERSION = "v4";
 var CACHE = "rutina-" + VERSION;
 var FILES = [
   "./",

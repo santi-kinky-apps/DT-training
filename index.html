@@ -252,8 +252,13 @@
     width:44px; padding:5px 2px; border-radius:7px; border:1px solid var(--bg-alt-2);
     background:var(--bg); color:var(--text); font-size:13px; text-align:center; flex-shrink:0;
   }
-  .ajuste-row .u{ font-size:10.5px; color:var(--text-dim); flex-shrink:0; }
-  .ajuste-reps-text{ font-size:11px; color:var(--text-dim); flex-shrink:0; white-space:nowrap; width:34px; }
+  .ajuste-row .u{ font-size:10.5px; color:var(--text-dim); flex-shrink:0; width:8px; }
+  .ajuste-row .beat-input{ margin-left:10px; width:48px; }
+  .ajuste-head{ margin-bottom:6px; }
+  .ajuste-head .ajuste-col{ font-size:10.5px; font-weight:700; color:var(--text-dim); text-align:center; line-height:1.15; }
+  .ajuste-head .ajuste-col:nth-of-type(3){ width:57px; }
+  .ajuste-head .ajuste-col:nth-of-type(4){ width:71px; margin-left:5px; }
+  .ajuste-reps-text{ font-size:11px; color:var(--text-dim); flex-shrink:0; white-space:nowrap; width:44px; }
   .ajuste-day-label{ font-size:12px; font-weight:700; color:var(--text-dim); flex-shrink:0; width:52px; }
   .ajustes-actions{ display:flex; gap:10px; width:100%; margin-top:4px; margin-bottom:24px; }
   .palette-row{ display:flex; gap:8px; flex-wrap:wrap; }
@@ -706,7 +711,7 @@
       </div>
 
       <details class="level-card editor-details" id="editorDetails">
-        <summary class="level-name" id="editorTitle">Ajustar segundos de cada repetición</summary>
+        <summary class="level-name" id="editorTitle">Ajustar tiempos de Mantener y Compás</summary>
         <div class="level-sub" style="margin:10px 0;" id="editorDesc">Elige un día y cambia los segundos de cada repetición.</div>
         <div id="ajustesLevels" style="width:100%;"></div>
         <div class="ajustes-actions">
@@ -976,15 +981,15 @@
         <div class="level-sub" style="margin-bottom:6px;" id="compasManualTag">Personalizado (no hay días para este modo)</div>
         <div class="level-sub" style="margin-bottom:6px;" id="compasIntervalLabel">Cada cuánto</div>
         <div class="days-row" id="compasIntervalRow" style="margin-bottom:10px;">
-          <button class="day-pill compas-interval-pill" data-sec="1.5" style="width:auto; padding:0 16px;">1.5s</button>
-          <button class="day-pill compas-interval-pill" data-sec="2" style="width:auto; padding:0 16px;">2s</button>
-          <button class="day-pill compas-interval-pill" data-sec="2.5" style="width:auto; padding:0 16px;">2.5s</button>
           <button class="day-pill compas-interval-pill" data-sec="3" style="width:auto; padding:0 16px;">3s</button>
+          <button class="day-pill compas-interval-pill" data-sec="4" style="width:auto; padding:0 16px;">4s</button>
+          <button class="day-pill compas-interval-pill" data-sec="5" style="width:auto; padding:0 16px;">5s</button>
+          <button class="day-pill compas-interval-pill" data-sec="6" style="width:auto; padding:0 16px;">6s</button>
           <button class="day-pill compas-interval-pill" data-sec="custom" id="compasIntervalCustomPill" style="width:auto; padding:0 16px;">Personalizado</button>
         </div>
         <div class="field" id="compasIntervalCustomFieldWrap" style="display:none; width:100%; max-width:180px; margin-bottom:14px;">
           <label id="compasIntervalCustomLabel">Segundos</label>
-          <input type="number" id="compasIntervalCustomInput" min="1" step="0.1" value="2">
+          <input type="number" id="compasIntervalCustomInput" min="1" step="0.1" value="4">
         </div>
 
         <div class="level-sub" style="margin-bottom:6px;" id="compasRepsLabel">Repeticiones</div>
@@ -1080,9 +1085,12 @@
       next_day_btn:function(label,n){ return "Ir al día "+n+" de "+label; },
       real_pace_wait_msg:"Con Ritmo real activo, tienes que esperar a un nuevo día de calendario para entrenar el siguiente.",
       modos_title:"Elige cómo te la vas a coger hoy",
-      editor_title:"Ajustar segundos de cada repetición",
-      editor_desc:"Elige un nivel y cambia los segundos de cada uno de sus 7 días. Ese valor también define cuánto dura el aguante en Compás ese día, y el del último día de Garganta insaciable define el tiempo del Modo Maestro. Guardar un cambio reinicia el progreso de los niveles (tu racha, tus logros y el Modo Maestro no se tocan).",
-      day_word:"Día", reps_short:"repeticiones", seconds_short:"s",
+      editor_title:"Ajustar tiempos de Mantener y Compás",
+      editor_desc:"Elige un nivel y ajusta cada uno de sus 7 días. Mantener: los segundos de cada repetición; también definen cuánto dura el aguante en Compás, y el último día de Garganta insaciable define el tiempo del Modo Maestro. Compás: cada cuántos segundos llega un golpe (tienes todo ese tiempo para tocar). Cambiar los segundos de Mantener reinicia el progreso de los niveles; cambiar solo el ritmo de Compás no (tu racha, tus logros y el Modo Maestro nunca se tocan).",
+      editor_col_hold:"Mantener",
+      editor_col_beat:"Compás: cada",
+      beats_saved_toast:"Ritmo de Compás guardado. Tu progreso no cambia.",
+      day_word:"Día", reps_short:"rep.", seconds_short:"s",
       plan_legend:"Círculos bajo cada día, en orden: Mantener · Compás · Toque rápido (verde = hecho). El día solo queda completo con los tres.",
       modos_scope_note:"Lo que elijas aquí define el nivel y el día de los tres modos: Mantener, Compás y Toque rápido.",
       level_principiante:"Boca novata", level_intermedio:"Garganta entrenada", level_experto:"Garganta profesional",
@@ -1171,6 +1179,7 @@
       compas_hint_hold:"AGUANTA (no sueltes)",
       compas_hint_prepare_hold:"Prepárate: viene un aguante — puedes dejar apretado desde ya",
       compas_hint_hit:"¡Bien!",
+      compas_hint_rest:function(n){ return "Respira… sigue en "+n+" s"; },
       compas_hint_miss:"Fallaste",
       compas_hint_miss_strict:"Fallaste — reiniciando por Entrenamiento perfecto",
       compas_strict_restart_toast:"Entrenamiento perfecto activo: la ronda se reinicia desde cero.",
@@ -1310,10 +1319,10 @@
         {p:"Apoya el celular sobre el consolador con el botón a la altura de tu nariz: todo se toca con la nariz mientras te lo metes hasta el fondo, con las manos libres."},
         {p:"Cada día tiene tres pruebas: **Mantener**, **Compás** y **Toque rápido**. El día solo se completa cuando haces las tres. Arriba de cada prueba ves el nivel, el día (✓ si esa prueba ya está hecha) y la meta."},
         {h:"Mantener"},
-        {p:"Métete el consolador hasta el fondo de la garganta y aprieta el botón con la nariz el tiempo que pide la meta. Si lo sacas antes, es un fallo (✕); si aguantas hasta el final, cuenta (✓). Terminas cuando juntas las repeticiones de la meta: fallar solo te obliga a hacer una más."},
+        {p:"Métete el consolador hasta el fondo de la garganta y aprieta el botón con la nariz el tiempo que pide la meta. Si lo sacas antes, es un fallo (✕); si aguantas hasta el final, cuenta (✓). Terminas cuando juntas las repeticiones de la meta: fallar solo te obliga a hacer una más. En los últimos 3 s suenan pitidos cada vez más agudos para avisarte que ya casi lo logras (también en los aguantes de **Compás**)."},
         {h:"Compás"},
-        {p:"Da un toque en cada golpe, al ritmo. Dejar el botón apretado no cuenta: cada golpe pide un toque nuevo. Desde **Garganta entrenada** también salen golpes de doble toque."},
-        {p:"Cuando suena la alarma y el botón empieza a pulsar, viene un aguante: apóyate desde ese momento y no lo saques hasta que termine. Dura lo mismo que una repetición de **Mantener** de ese día. Para que el día cuente necesitas acertar el **80 %** de los golpes."},
+        {p:"En cada golpe, sácalo por completo, vuelve a metértelo y toca el botón antes del siguiente golpe. Dejar el botón apretado no cuenta: cada golpe pide un toque nuevo. Desde **Garganta entrenada** también salen golpes de **doble toque**: dos toques completos en el tiempo de golpe y medio."},
+        {p:"Cuando suena la alarma y el botón empieza a pulsar, viene un aguante: apóyate desde ese momento y no lo saques hasta que termine. Dura lo mismo que una repetición de **Mantener** de ese día. Después de cada aguante tienes 5 s para respirar antes del siguiente golpe. Para que el día cuente necesitas acertar el **80 %** de los golpes."},
         {h:"Toque rápido"},
         {p:"Toca lo más rápido que puedas hasta que se acabe el tiempo. **Boca novata**: 1 min, de 30 a 50 toques. **Garganta entrenada**: 3 min, de 120 a 180. **Garganta profesional**: 5 min, de 250 a 350. **Garganta insaciable**: 5 min, de 300 a 400. Si no llegas a la meta, repites."},
         {h:"Mi entreno"},
@@ -1321,7 +1330,7 @@
         {p:"Completar las 4 semanas desbloquea el **modo Hardcore**: repites los 4 niveles con el doble de repeticiones y 5 s más en cada una. Terminarlos desbloquea el **Modo Maestro**: cada repetición dura lo mismo que en el último día de **Garganta insaciable** en **Hardcore**, y cada día suma 2 repeticiones."},
         {p:"**Personalizado**: si la rutina diaria se te quedó corta, puedes hacer rondas extra en las que tú decides el tiempo y las repeticiones de cada prueba. Al tocar un día vuelves al programa."},
         {p:"**Entrenamiento perfecto**: aumenta la dificultad; un fallo te devuelve a cero en **Mantener** y reinicia la ronda en **Compás**. **Entrenamiento continuo** (solo Mantener): tienes un tiempo límite para volver a meterte el consolador hasta el fondo; si pasan 3 sin volver, la sesión se pausa. Cada combinación, con o sin **Hardcore**, guarda su propio progreso: cambiar no borra nada."},
-        {p:"**Editor de segundos**: cambia cuánto dura cada repetición y, con eso, el aguante de **Compás**. Guardar reinicia el progreso de los niveles, pero no tu racha ni tus logros. Úsalo si te resulta muy fácil o muy difícil."},
+        {p:"**Editor de tiempos**: cambia cuánto dura cada repetición de **Mantener** (y con eso el aguante de **Compás**) y cada cuántos segundos llega un golpe en **Compás**. Cambiar los segundos de Mantener reinicia el progreso de los niveles; cambiar solo el ritmo de Compás no. Tu racha y tus logros nunca se tocan. Úsalo si te resulta muy fácil o muy difícil."},
         {h:"Íconos de arriba"},
         {p:"☀️/🌙 tema claro u oscuro · ES/EN idioma · ⬇️ baja el botón cerca del borde y sube las pestañas, para no tocar nada por error con la boca ocupada y poder usarlo en vertical · ? esta ayuda · 🏆 logros · ⚙️ ajustes avanzados."},
         {h:"Ajustes avanzados"},
@@ -1371,7 +1380,7 @@
       tab_tareas:"Tareas",
       impose_label:"🔒 Imponer ajustes mientras dure la orden",
       impose_help:"Quien recibe la orden no podrá cambiarlos hasta que la orden termine (o con tu clave, si pones una).",
-      impose_times_label:"Enviar mis segundos del editor",
+      impose_times_label:"Enviar mis tiempos del editor (Mantener y Compás)",
       impose_pin_label:"Clave para quitarlo antes (opcional)",
       impose_sum_intro:"🔒 Además te impone estos ajustes mientras dure la orden:",
       impose_sum_unlock:"Se desbloquean solos cuando la orden termine.",
@@ -1548,8 +1557,11 @@
       next_day_btn:function(label,n){ return "Go to day "+n+" of "+label; },
       real_pace_wait_msg:"With Real pace on, you need to wait for a new calendar day to train the next one.",
       modos_title:"Pick how you're getting fucked today",
-      editor_title:"Adjust seconds per repetition",
-      editor_desc:"Pick a level and change the seconds for each of its 7 days. That value also sets how long the Rhythm hold lasts on that day, and the last day of Insatiable throat sets the time for Master mode. Saving a change resets level progress (your streak, achievements and Master mode are untouched).",
+      editor_title:"Adjust Keep it in and Rhythm times",
+      editor_desc:"Pick a level and adjust each of its 7 days. Keep it in: the seconds of each rep; they also set how long the Rhythm hold lasts, and the last day of Insatiable throat sets the time for Master mode. Rhythm: how many seconds between beats (you have all that time to tap). Changing Keep it in seconds resets level progress; changing only the Rhythm pace doesn't (your streak, achievements and Master mode are never touched).",
+      editor_col_hold:"Keep it in",
+      editor_col_beat:"Rhythm: every",
+      beats_saved_toast:"Rhythm pace saved. Your progress doesn't change.",
       day_word:"Day", reps_short:"reps", seconds_short:"s",
       plan_legend:"Circles under each day, in order: Keep it in · Rhythm · Quick Tap (green = done). A day is only complete with all three.",
       modos_scope_note:"What you pick here sets the level and day for all three modes: Keep it in, Rhythm and Quick Tap.",
@@ -1639,6 +1651,7 @@
       compas_hint_hold:"HOLD (don't let go)",
       compas_hint_prepare_hold:"Get ready: a hold is coming — you can press and keep holding now",
       compas_hint_hit:"Nice!",
+      compas_hint_rest:function(n){ return "Breathe… next beat in "+n+" s"; },
       compas_hint_miss:"Missed",
       compas_hint_miss_strict:"Missed — restarting because of Perfect training",
       compas_strict_restart_toast:"Perfect training is on: the round restarts from zero.",
@@ -1778,10 +1791,10 @@
         {p:"Rest your phone on the dildo with the button at nose level: you tap everything with your nose while you take it all the way in, hands free."},
         {p:"Each day has three tests: **Keep it in**, **Rhythm** and **Quick Tap**. A day is only complete when you do all three. Above each test you see the level, the day (✓ if that test is already done) and the goal."},
         {h:"Keep it in"},
-        {p:"Take the dildo all the way down your throat and press the button with your nose for as long as the goal says. Pull it out early and it's a miss (✕); hold to the end and it counts (✓). You finish once you rack up the goal's reps: a miss just means one more."},
+        {p:"Take the dildo all the way down your throat and press the button with your nose for as long as the goal says. Pull it out early and it's a miss (✕); hold to the end and it counts (✓). You finish once you rack up the goal's reps: a miss just means one more. In the last 3 s you'll hear beeps that get higher and higher, so you know you're almost there (also during **Rhythm** holds)."},
         {h:"Rhythm"},
-        {p:"Tap once on each beat, in time. Keeping the button pressed doesn't count: every beat needs a new tap. From **Trained throat** on there are double-tap beats too."},
-        {p:"When the alarm sounds and the button starts pulsing, a hold is coming: press from that moment and don't pull it out until it ends. It lasts as long as one **Keep it in** rep that day. For the day to count you need to hit **80%** of the beats."},
+        {p:"On each beat, pull it all the way out, take it back in and tap the button before the next beat. Keeping the button pressed doesn't count: every beat needs a new tap. From **Trained throat** on there are **double-tap** beats too: two full taps in the time of a beat and a half."},
+        {p:"When the alarm sounds and the button starts pulsing, a hold is coming: press from that moment and don't pull it out until it ends. It lasts as long as one **Keep it in** rep that day. After each hold you get 5 s to breathe before the next beat. For the day to count you need to hit **80%** of the beats."},
         {h:"Quick Tap"},
         {p:"Tap as fast as you can until time runs out. **Rookie mouth**: 1 min, 30 to 50 taps. **Trained throat**: 3 min, 120 to 180. **Pro throat**: 5 min, 250 to 350. **Insatiable throat**: 5 min, 300 to 400. Miss the goal and you go again."},
         {h:"My training"},
@@ -1789,7 +1802,7 @@
         {p:"Completing the 4 weeks unlocks **Hardcore**: you repeat the 4 levels with double the reps and 5 s more on each. Finishing them unlocks **Master mode**: each rep lasts as long as on the last day of **Insatiable throat** in Hardcore, and every day adds 2 reps."},
         {p:"**Custom**: if the daily routine wasn't enough for you, you can do extra rounds where you set the time and reps for each test. Tapping a day takes you back to the program."},
         {p:"**Perfect training**: raises the difficulty; a miss sends you back to zero in **Keep it in** and restarts the round in **Rhythm**. **Continuous training** (Keep it in only): you get a time limit to take the dildo all the way back in; after 3 without coming back, the session pauses. Each combination, with or without **Hardcore**, keeps its own progress: switching deletes nothing."},
-        {p:"**Seconds editor**: change how long each rep lasts and, with it, the **Rhythm** hold. Saving resets level progress, but not your streak or achievements. Use it if it feels too easy or too hard."},
+        {p:"**Time editor**: change how long each **Keep it in** rep lasts (and with it the **Rhythm** hold) and how many seconds there are between **Rhythm** beats. Changing Keep it in seconds resets level progress; changing only the Rhythm pace doesn't. Your streak and achievements are never touched. Use it if it feels too easy or too hard."},
         {h:"Top icons"},
         {p:"☀️/🌙 light or dark theme · ES/EN language · ⬇️ moves the button near the bottom edge and the tabs to the top, so you don't tap anything by mistake with your mouth busy and can use it upright · ? this help · 🏆 achievements · ⚙️ advanced settings."},
         {h:"Advanced settings"},
@@ -1839,7 +1852,7 @@
       tab_tareas:"Tasks",
       impose_label:"🔒 Impose settings while the order lasts",
       impose_help:"Whoever receives the order won't be able to change them until the order ends (or with your key, if you set one).",
-      impose_times_label:"Send my editor's seconds",
+      impose_times_label:"Send my editor times (Keep it in and Rhythm)",
       impose_pin_label:"Key to remove it early (optional)",
       impose_sum_intro:"🔒 It also imposes these settings while the order lasts:",
       impose_sum_unlock:"They unlock on their own when the order ends.",
@@ -2031,7 +2044,25 @@
       {reps:28, time:60}, {reps:30, time:62}, {reps:30, time:65}
     ]
   };
+  // Cada cuánto llega un golpe en Compás, por día (segundos). Baja de a poco y nunca de 3 s.
+  var DEFAULT_BEATS = {
+    principiante: [5.0, 4.9, 4.8, 4.7, 4.6, 4.5, 4.4],
+    intermedio:   [4.3, 4.2, 4.1, 4.0, 3.9, 3.8, 3.7],
+    experto:      [3.6, 3.6, 3.5, 3.5, 3.4, 3.4, 3.3],
+    insaciable:   [3.2, 3.2, 3.1, 3.1, 3.1, 3.0, 3.0]
+  };
+  var BEAT_MIN = 2, BEAT_MAX = 10;
+  function cleanBeat(v){ v = Math.round(Number(v)*10)/10; return isFinite(v) ? Math.max(BEAT_MIN, Math.min(BEAT_MAX, v)) : null; }
+  LEVEL_IDS.forEach(function(l){ DEFAULT_LEVELS[l].forEach(function(d, i){ d.beat = DEFAULT_BEATS[l][i]; }); });
   function cloneLevels(obj){ return JSON.parse(JSON.stringify(obj)); }
+  // Completa el ritmo de Compás en niveles guardados por versiones anteriores.
+  function fillBeats(levels){
+    LEVEL_IDS.forEach(function(l){ levels[l].forEach(function(d, i){ var b = cleanBeat(d.beat); d.beat = (b == null || d.beat == null) ? DEFAULT_BEATS[l][i] : b; }); });
+    return levels;
+  }
+  function timesEqual(a, b){
+    return LEVEL_IDS.every(function(l){ return a[l].every(function(d, i){ return d.time === b[l][i].time; }); });
+  }
 
   var CUSTOM_LEVELS_KEY = "gpt_custom_levels_v1";
   function loadWorkingLevels(){
@@ -2042,7 +2073,7 @@
         if(parsed && parsed.principiante && parsed.intermedio && parsed.experto){
           // Versiones anteriores no tenían Garganta insaciable: se completa con sus valores por defecto.
           if(!Array.isArray(parsed.insaciable) || parsed.insaciable.length !== 7) parsed.insaciable = cloneLevels(DEFAULT_LEVELS.insaciable);
-          return parsed;
+          return fillBeats(parsed);
         }
       }
     }catch(e){}
@@ -2498,6 +2529,12 @@
     tickToggle = !tickToggle;
   }
 
+  // Pitido de cuenta final: suena en los últimos 3 s de un aguante, cada vez más agudo,
+  // para saber que ya casi se logra sin mirar la pantalla.
+  function playFinalPip(secondsLeft){
+    var f = secondsLeft >= 3 ? 1320 : (secondsLeft === 2 ? 1568 : 1976);
+    tone(f, f, 0.13, "triangle", 0, 0.5);
+  }
   function playSuccessSound(){
     tone(523,523,0.14,"triangle",0,0.55);
     tone(659,659,0.14,"triangle",0.10,0.55);
@@ -2958,7 +2995,7 @@
 
   var COMPAS_INTERVAL_KEY = "gpt_compas_interval_v1";
   var COMPAS_REPS_KEY = "gpt_compas_reps_v1";
-  function loadCompasInterval(){ try{ var v = parseFloat(localStorage.getItem(COMPAS_INTERVAL_KEY)); return (v>=1 && v<=10) ? v : 2; }catch(e){ return 2; } }
+  function loadCompasInterval(){ try{ var v = parseFloat(localStorage.getItem(COMPAS_INTERVAL_KEY)); return (v>=1 && v<=10) ? v : 4; }catch(e){ return 4; } }
   function saveCompasInterval(v){ try{ localStorage.setItem(COMPAS_INTERVAL_KEY, String(v)); }catch(e){} }
   function loadCompasReps(){ try{ var v = parseInt(localStorage.getItem(COMPAS_REPS_KEY),10); return (v===15||v===25||v===40) ? v : 25; }catch(e){ return 25; } }
   function saveCompasReps(v){ try{ localStorage.setItem(COMPAS_REPS_KEY, String(v)); }catch(e){} }
@@ -2986,8 +3023,17 @@
   var compasHits = 0, compasMisses = 0, compasStreak = 0, compasBestStreakThisRound = 0;
   var compasAutoHoldMs = null; // cuando hay día con nivel: el aguante dura lo mismo que el tiempo de ese día en Entrenar
 
-  var COMPAS_TAP_WINDOW_MS = 620;      // margen para completar un toque rápido alrededor del golpe
-  var COMPAS_DOUBLE_WINDOW_MS = 950;   // margen para completar dos toques rápidos seguidos
+  // Cada toque implica sacar el juguete entero y volver a metérselo, así que la ventana
+  // para tocar ocupa casi todo el tiempo entre golpes (solo se reserva un instante para
+  // el aviso de acierto/fallo). Un doble toque dura dos golpes, y después de cada
+  // aguante hay un descanso antes del siguiente golpe. Un doble toque dura golpe y medio.
+  var COMPAS_WINDOW_MARGIN_MS = 250;   // lo que se reserva al final de cada golpe
+  var COMPAS_MIN_WINDOW_MS = 600;
+  var COMPAS_REST_AFTER_HOLD_MS = 5000;
+  var COMPAS_DOUBLE_FACTOR = 1.5;      // un doble toque dura golpe y medio
+  var compasCurrentWindowMs = 0;
+  var compasCurrentNextTs = 0;
+  var compasLastPip = 0;               // último pitido de cuenta final que sonó en este aguante         // cuándo arranca el siguiente golpe (para la cuenta del descanso)
   var compasDoubleTapCount = 0;
   var COMPAS_HOLD_TOLERANCE_MS = 200;  // margen de gracia al medir un aguante
   var COMPAS_EARLY_TAP_MS = 250;       // un toque hasta 250 ms antes del golpe también cuenta
@@ -3012,10 +3058,11 @@
   // Dificultad de Compás para los niveles con días: arranca en "interval/reps" el
   // día 1 y llega a "intervalMin/repsMax" el día 7, progresando de a poco.
   var COMPAS_LEVEL_BASE = {
-    principiante: { interval:2.6, intervalMin:2.0, reps:12, repsMax:18 },
-    intermedio:   { interval:2.1, intervalMin:1.6, reps:18, repsMax:26 },
-    experto:      { interval:1.7, intervalMin:1.2, reps:24, repsMax:34 },
-    insaciable:   { interval:1.4, intervalMin:1.0, reps:30, repsMax:40 }
+    // El ritmo baja de a poco a lo largo de los 28 días y nunca baja de 3 s.
+    principiante: { interval:5.0, intervalMin:4.4, reps:12, repsMax:18 },
+    intermedio:   { interval:4.3, intervalMin:3.7, reps:18, repsMax:26 },
+    experto:      { interval:3.6, intervalMin:3.3, reps:24, repsMax:34 },
+    insaciable:   { interval:3.2, intervalMin:3.0, reps:30, repsMax:40 }
   };
   var compasAutoModeActive = false;
   var compasTaskMode = false;
@@ -3023,7 +3070,7 @@
     var base = COMPAS_LEVEL_BASE[level];
     if(!base) return null;
     var frac = Math.max(0, Math.min(6, dayIndex||0)) / 6;
-    var interval = Math.round((base.interval - frac*(base.interval-base.intervalMin)) * 10) / 10;
+    var interval = LEVELS[level][Math.max(0, Math.min(6, dayIndex||0))].beat;
     var reps = Math.round(base.reps + frac*(base.repsMax-base.reps));
     return {interval:interval, reps:reps};
   }
@@ -3090,7 +3137,7 @@
       var raw = pill.getAttribute("data-sec");
       if(raw === "custom"){
         compasIntervalIsCustom = true;
-        compasInterval = parseFloat(compasIntervalCustomInput.value) || 2;
+        compasInterval = parseFloat(compasIntervalCustomInput.value) || 4;
       } else {
         compasIntervalIsCustom = false;
         compasInterval = parseFloat(raw);
@@ -3225,6 +3272,11 @@
 
     compasCurrentType = type;
     compasCurrentHoldMs = holdMs;
+    compasLastPip = 0;
+    // El doble toque pide los dos toques en golpe y medio: más rápido que dos toques normales.
+    var beatMs = (type === "double") ? Math.round(intervalMs*COMPAS_DOUBLE_FACTOR) : intervalMs;
+    compasCurrentWindowMs = (type === "hold") ? holdMs + COMPAS_HOLD_TOLERANCE_MS
+      : Math.max(COMPAS_MIN_WINDOW_MS, beatMs - COMPAS_WINDOW_MARGIN_MS);
     compasBeatStartTs = Date.now();
     compasBeatResolved = false;
     compasDoubleTapCount = 0;
@@ -3268,34 +3320,47 @@
 
     // Corta el aviso de "toque" un poco antes de que termine la ventana, para dar
     // lugar al flash de acierto/fallo sin que se pise con el siguiente golpe.
-    var windowMs = type === "tap" ? COMPAS_TAP_WINDOW_MS : (type === "double" ? COMPAS_DOUBLE_WINDOW_MS : holdMs + COMPAS_HOLD_TOLERANCE_MS);
     compasSetTimeout(function(){
       if(!compasActive || compasBeatIndex !== i || compasBeatResolved) return;
       finalizeCompasBeatIfPending();
-    }, windowMs);
+    }, compasCurrentWindowMs);
 
-    // Los golpes de toque y doble toque siguen la grilla fija del compás; un golpe
-    // de aguante (sobre todo con el tiempo real del día, que puede ser mucho más
-    // largo que el intervalo) recién deja pasar al siguiente golpe cuando termina.
-    var nextBeatDelay = (type === "hold") ? Math.max(intervalMs, holdMs + 500) : intervalMs;
+    // Un toque ocupa un golpe y un doble toque dos. Un aguante dura lo que dure y,
+    // al terminar, deja un descanso antes del siguiente golpe para respirar.
+    var nextBeatDelay = (type === "hold") ? holdMs + COMPAS_HOLD_TOLERANCE_MS + COMPAS_REST_AFTER_HOLD_MS : beatMs;
+    compasCurrentNextTs = compasBeatStartTs + nextBeatDelay;
     compasSetTimeout(function(){ runCompasBeat(i+1); }, nextBeatDelay);
 
     if(!compasRafId) compasRafId = requestAnimationFrame(compasFrame);
   }
 
+  function compasCurrentIndexIsLast(){ return compasBeatIndex >= compasTotalReps - 1; }
   function compasFrame(){
     compasRafId = null;
     if(!compasActive){ return; }
     var elapsed = Date.now() - compasBeatStartTs;
     if(compasCurrentType === "hold"){
-      setCompasRing(elapsed/Math.max(1,compasCurrentHoldMs), compasIsPressed);
-      if(compasCurrentHoldMs > 3000 && !compasBeatResolved){
-        var remainingSec = Math.max(0, Math.ceil((compasCurrentHoldMs-elapsed)/1000));
-        compasHint.textContent = t("compas_hint_hold") + " (" + remainingSec + "s)";
+      if(compasBeatResolved && elapsed > 300){
+        // Descanso después del aguante: el anillo se vacía mientras corre la cuenta.
+        var restLeft = Math.max(0, compasCurrentNextTs - Date.now());
+        setCompasRing(restLeft / COMPAS_REST_AFTER_HOLD_MS, false);
+        if(compasCurrentIndexIsLast()) compasHint.textContent = t("compas_hint_hit");
+        else compasHint.textContent = t("compas_hint_rest")(Math.ceil(restLeft/1000));
+        compasBeatLabel.textContent = "😮‍💨";
+      } else {
+        setCompasRing(elapsed/Math.max(1,compasCurrentHoldMs), compasIsPressed);
+        var leftSec = Math.ceil((compasCurrentHoldMs-elapsed)/1000);
+        if(!compasBeatResolved && compasIsPressed && leftSec >= 1 && leftSec <= 3 && leftSec !== compasLastPip){
+          compasLastPip = leftSec;
+          playFinalPip(leftSec);
+        }
+        if(compasCurrentHoldMs > 3000 && !compasBeatResolved){
+          var remainingSec = Math.max(0, Math.ceil((compasCurrentHoldMs-elapsed)/1000));
+          compasHint.textContent = t("compas_hint_hold") + " · " + remainingSec + " s";
+        }
       }
     } else {
-      var winMs = compasCurrentType === "double" ? COMPAS_DOUBLE_WINDOW_MS : COMPAS_TAP_WINDOW_MS;
-      setCompasRing(elapsed/winMs, false);
+      setCompasRing(elapsed/Math.max(1,compasCurrentWindowMs), false);
       if(compasCurrentType === "double" && compasDoubleTapCount === 1 && !compasBeatResolved){
         compasHint.textContent = t("compas_hint_double_again");
       }
@@ -3437,7 +3502,7 @@
     if(compasCurrentType === "hold"){
       compasButton.classList.add("compas-holding");
     } else if(compasCurrentType === "tap"){
-      if(now - compasBeatStartTs <= COMPAS_TAP_WINDOW_MS) resolveCompasBeat(true);
+      if(now - compasBeatStartTs <= compasCurrentWindowMs) resolveCompasBeat(true);
     }
   }
   compasButton.addEventListener("pointerdown", compasPointerDown);
@@ -3466,13 +3531,15 @@
     var elapsed = (Date.now() - startTs)/1000;
     timeDisplay.textContent = elapsed.toFixed(1)+"s";
 
+    var target = targetForSession();
     var wholeSec = Math.floor(elapsed);
     if(wholeSec > lastTickSecond && wholeSec > 0){
       lastTickSecond = wholeSec;
-      playTickTock();
+      var secsLeft = Math.ceil(target.time - wholeSec);
+      if(!holdResolved && secsLeft >= 1 && secsLeft <= 3) playFinalPip(secsLeft);
+      else playTickTock();
     }
 
-    var target = targetForSession();
     setRing(elapsed/target.time);
     if(!holdResolved && elapsed >= target.time){
       holdResolved = true;
@@ -4186,6 +4253,13 @@
 
     function showLevel(){
       list.innerHTML = "";
+      var head = document.createElement("div");
+      head.className = "ajuste-row ajuste-head";
+      head.innerHTML = '<span class="ajuste-day-label"></span><span class="ajuste-reps-text"></span>';
+      var h1 = document.createElement("span"); h1.className = "ajuste-col"; h1.textContent = t("editor_col_hold");
+      var h2 = document.createElement("span"); h2.className = "ajuste-col"; h2.textContent = t("editor_col_beat");
+      head.appendChild(h1); head.appendChild(h2);
+      list.appendChild(head);
       for(var i=0;i<7;i++){
         (function(idx){
           var row = document.createElement("div");
@@ -4205,7 +4279,20 @@
           timeInput.addEventListener("input", function(e){ draftLevels[ajustesLevelSel][idx].time = Math.max(1, parseInt(e.target.value,10) || 1); });
           clampMinOne(timeInput);
           var unitTime = document.createElement("span"); unitTime.className = "u"; unitTime.textContent = t("seconds_short");
+          var beatInput = document.createElement("input");
+          beatInput.type = "number"; beatInput.min = String(BEAT_MIN); beatInput.max = String(BEAT_MAX); beatInput.step = "0.1";
+          beatInput.className = "beat-input";
+          beatInput.value = draftLevels[ajustesLevelSel][idx].beat;
+          beatInput.setAttribute("aria-label", t("editor_col_beat")+", "+levelLabel(ajustesLevelSel)+", "+t("day_word")+" "+(idx+1));
+          if(isAssigned()) beatInput.disabled = true;
+          beatInput.addEventListener("input", function(e){
+            if(String(e.target.value).trim() === "") return;   // vacío mientras escribe: no cambia nada
+            var b = cleanBeat(e.target.value); if(b != null) draftLevels[ajustesLevelSel][idx].beat = b;
+          });
+          beatInput.addEventListener("blur", function(){ beatInput.value = draftLevels[ajustesLevelSel][idx].beat; });
+          var unitBeat = document.createElement("span"); unitBeat.className = "u"; unitBeat.textContent = t("seconds_short");
           row.appendChild(dayLabel); row.appendChild(repsText); row.appendChild(timeInput); row.appendChild(unitTime);
+          row.appendChild(beatInput); row.appendChild(unitBeat);
           list.appendChild(row);
         })(i);
       }
@@ -4333,18 +4420,29 @@
     saveProgressSlots(); saveCompasProgress(); saveBpmProgress(); saveDatesSlots();
     switchToTrack();
   }
-  function applyLevelChange(newLevels, toastKey){
+  function storeLevels(newLevels){
     LEVELS = cloneLevels(newLevels);
     if(levelsEqual(LEVELS, DEFAULT_LEVELS)){ try{ localStorage.removeItem(CUSTOM_LEVELS_KEY); }catch(e){} }
     else saveWorkingLevels();
+  }
+  function applyLevelChange(newLevels, toastKey){
+    storeLevels(newLevels);
     resetProgressAfterLevelEdit();
     renderAjustes();
     showToast(t(toastKey) + " — " + t("ajustes_progress_reset_note"));
+  }
+  // Si solo cambia el ritmo de Compás, se guarda sin tocar el progreso.
+  function applyBeatOnlyChange(newLevels){
+    storeLevels(newLevels);
+    syncAllModes();
+    renderAjustes();
+    showToast(t("beats_saved_toast"));
   }
 
   document.getElementById("ajustesSaveBtn").addEventListener("click", function(){
     if(levelsEqual(draftLevels, LEVELS)){ showToast(t("levels_no_changes")); return; }
     var pending = cloneLevels(draftLevels);
+    if(timesEqual(pending, LEVELS)){ applyBeatOnlyChange(pending); return; }
     showConfirm(t("confirm_levels_change"), function(){ applyLevelChange(pending, "ajustes_saved_toast"); });
   });
   document.getElementById("ajustesResetBtn").addEventListener("click", function(){
@@ -4353,6 +4451,7 @@
       showToast(t("levels_already_default"));
       return;
     }
+    if(timesEqual(LEVELS, DEFAULT_LEVELS)){ applyBeatOnlyChange(DEFAULT_LEVELS); return; }
     showConfirm(t("confirm_levels_reset"), function(){ applyLevelChange(DEFAULT_LEVELS, "ajustes_reset_toast"); });
   });
 
@@ -4549,9 +4648,17 @@
       return Array.isArray(arr) && arr.length === 7 && arr.every(function(x){ return typeof x === "number" && x >= 1 && x <= 600; });
     });
   }
-  function timesToLevels(times){
-    var lv = cloneLevels(DEFAULT_LEVELS);
-    LEVEL_IDS.forEach(function(l, li){ for(var d=0; d<7; d++) lv[l][d].time = times[li][d]; });
+  function validBeats(beats){
+    return Array.isArray(beats) && beats.length === LEVEL_IDS.length && beats.every(function(arr){
+      return Array.isArray(arr) && arr.length === 7 && arr.every(function(x){ return typeof x === "number" && x >= BEAT_MIN && x <= BEAT_MAX; });
+    });
+  }
+  function timesToLevels(times, beats){
+    var lv = cloneLevels(LEVELS);
+    LEVEL_IDS.forEach(function(l, li){ for(var d=0; d<7; d++){
+      lv[l][d].time = times[li][d];
+      if(beats) lv[l][d].beat = beats[li][d];
+    } });
     return lv;
   }
   function cleanImpose(im){
@@ -4561,6 +4668,7 @@
       safe:!!im.safe, realPace:!!im.realPace, allowCustom:!!im.allowCustom, times:null, salt:null, pinHash:null
     };
     if(validTimes(im.times)) out.times = im.times;
+    if(out.times && validBeats(im.beats)) out.beats = im.beats;
     if(typeof im.salt === "string" && typeof im.pinHash === "string" && im.salt && im.pinHash){ out.salt = im.salt.slice(0,32); out.pinHash = im.pinHash.slice(0,32); }
     return out;
   }
@@ -4571,7 +4679,7 @@
     lines.push("• " + t("safe_mode_title") + ": " + yesNo(im.safe));
     lines.push("• " + t("real_pace_title") + ": " + yesNo(im.realPace));
     lines.push("• " + t("level_libre") + ": " + (im.allowCustom ? t("dom_allowed") : t("dom_blocked")));
-    if(im.times) lines.push("• " + (levelsEqual(timesToLevels(im.times), LEVELS) ? t("dom_sum_times_same") : t("dom_sum_times_change")));
+    if(im.times) lines.push("• " + (timesEqual(timesToLevels(im.times, im.beats), LEVELS) ? t("dom_sum_times_same") : t("dom_sum_times_change")));
     lines.push(im.pinHash ? t("impose_sum_unlock_pin") : t("impose_sum_unlock"));
     return lines;
   }
@@ -4580,11 +4688,12 @@
     var im = order.impose;
     try{
       if(im.times){
-        var newLevels = timesToLevels(im.times);
+        var newLevels = timesToLevels(im.times, im.beats);
         if(!levelsEqual(newLevels, LEVELS)){
           if(levelsEqual(newLevels, DEFAULT_LEVELS)) localStorage.removeItem(CUSTOM_LEVELS_KEY);
           else localStorage.setItem(CUSTOM_LEVELS_KEY, JSON.stringify(newLevels));
-          [PROGRESS_SLOTS_KEY, COMPAS_PROGRESS_KEY, BPM_PROGRESS_KEY, DATES_KEY].forEach(function(k){ localStorage.removeItem(k); });
+          // Solo un cambio en los segundos de Mantener reinicia el progreso.
+          if(!timesEqual(newLevels, LEVELS)) [PROGRESS_SLOTS_KEY, COMPAS_PROGRESS_KEY, BPM_PROGRESS_KEY, DATES_KEY].forEach(function(k){ localStorage.removeItem(k); });
         }
       }
       saveStrictMode(im.strict);
@@ -4629,7 +4738,10 @@
       realPace: document.getElementById("tkImpRealPace").checked,
       allowCustom: document.getElementById("tkImpAllowCustom").checked
     };
-    if(document.getElementById("tkImpTimes").checked) im.times = levelTimes(LEVELS);
+    if(document.getElementById("tkImpTimes").checked){
+      im.times = levelTimes(LEVELS);
+      im.beats = LEVEL_IDS.map(function(l){ return LEVELS[l].map(function(d){ return d.beat; }); });
+    }
     if(pin || pin2){
       if(pin.length < 4){ showToast(t("dom_pin_short")); return false; }
       if(pin !== pin2){ showToast(t("dom_pin_mismatch")); return false; }
@@ -4728,7 +4840,7 @@
                     "compas_streak","reps_total","train_days","streak_days","clean_sessions","free"];
   var TASK_FIELDS = {
     mantener_custom:[{k:"sessions",min:1,max:50,def:1},{k:"reps",min:1,max:300,def:10},{k:"time",min:1,max:600,def:20},{k:"strict",check:true}],
-    compas_custom:[{k:"sessions",min:1,max:50,def:1},{k:"beats",min:4,max:300,def:20},{k:"interval",min:1,max:10,def:2,step:0.1},{k:"hold",min:1,max:600,def:10},{k:"pct",min:1,max:100,def:80}],
+    compas_custom:[{k:"sessions",min:1,max:50,def:1},{k:"beats",min:4,max:300,def:20},{k:"interval",min:1,max:10,def:4,step:0.1},{k:"hold",min:1,max:600,def:10},{k:"pct",min:1,max:100,def:80}],
     bpm_custom:[{k:"sessions",min:1,max:50,def:1},{k:"taps",min:1,max:5000,def:60},{k:"minutes",min:1,max:30,def:1}],
     program_days:[{k:"n",min:1,max:28,def:3}],
     program_level:[{k:"level",sel:true}],
