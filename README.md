@@ -37,7 +37,8 @@ DT-training is a training timer you use hands-free: you rest your phone on the t
   - **Quick Tap:** tap as fast as you can until time runs out.
 - **4 levels × 7 days** that unlock in order. Then comes **Hardcore** with its own progress, and **Master mode** after that.
 - **Modifiers:** Perfect training (one miss resets the count), Continuous training (time limit between reps), Safe mode (caps any hold at 20 s), Real pace (one day per calendar day).
-- **Seconds editor** to make every level easier or harder.
+- **Time editor** to adjust Keep it in seconds and Rhythm pace for every day.
+- **Countdown beeps** in the last 3 seconds of every hold, so you don't need to look at the screen.
 - **Tasks:** someone creates an order, you paste the code, and the app ticks tasks off on its own as you train. Each order has a unique ID, so a screenshot works as proof.
   - Daily tasks, surprise tasks and a deadline countdown.
   - An automatic punishment if something expires.

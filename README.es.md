@@ -37,7 +37,8 @@ DT-training es un temporizador de entrenamiento que se usa con las manos libres:
   - **Toque rápido:** toca lo más rápido que puedas hasta que se acabe el tiempo.
 - **4 niveles × 7 días** que se desbloquean en orden. Después viene **Hardcore**, con su propio progreso, y luego el **Modo Maestro**.
 - **Modificadores:** Entrenamiento perfecto (un fallo reinicia el conteo), Entrenamiento continuo (tiempo límite entre repeticiones), Modo seguro (ningún aguante pasa de 20 s) y Ritmo real (un día por día de calendario).
-- **Editor de segundos** para hacer cada nivel más fácil o más difícil.
+- **Editor de tiempos** para ajustar los segundos de Mantener y el ritmo de Compás de cada día.
+- **Pitidos de cuenta final** en los últimos 3 segundos de cada aguante, para no tener que mirar la pantalla.
 - **Tareas:** alguien crea una orden, tú pegas el código y la app tacha las tareas sola mientras entrenas. Cada orden tiene un identificador único, así que un pantallazo sirve de prueba.
   - Tareas diarias, tareas sorpresa y cuenta regresiva de los plazos.
   - Castigo automático si algo vence.
