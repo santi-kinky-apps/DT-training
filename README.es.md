@@ -84,4 +84,4 @@ Si la app te sirve, puedes [invitarme un café ☕](https://buymeacoffee.com/san
 
 ## Licencia
 
-Hecha por santi-kinky-apps. Bajo licencia [CC BY-NC 4.0](LICENSE): puedes compartirla y adaptarla dando crédito, **pero no con fines comerciales**.
+Diseñada por santi-kinky-apps, construida con ayuda de IA (Claude). Bajo licencia [CC BY-NC 4.0](LICENSE): puedes compartirla y adaptarla dando crédito, **pero no con fines comerciales**.

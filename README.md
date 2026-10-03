@@ -84,4 +84,4 @@ If the app is useful to you, you can [buy me a coffee ☕](https://buymeacoffee.
 
 ## License
 
-Made by santi-kinky-apps. Licensed under [CC BY-NC 4.0](LICENSE): you may share and adapt it with credit, **but not for commercial purposes**.
+Designed by santi-kinky-apps, built with the help of AI (Claude). Licensed under [CC BY-NC 4.0](LICENSE): you may share and adapt it with credit, **but not for commercial purposes**.
